@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar caballos</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header class="header__principal">
+        <h2 class="header__principal--titulo">Ingresa o modifica productos desde aquí.</h2>
+    </header>
+    <main>
+        <h2>Listado y caracteristicas de caballos.</h2>
+        <form id="formulario" class="contacto__formulario">
+            <div>
+                <label>Nombre</label>
+                <input type="text" name="" id="inputNombreProducto">
+            </div>
+            <div>
+                <label>Genero (M/H)</label>
+                <select name="genero" id="inputGenero">
+                    <option value="Macho">Macho</option>
+                    <option value="Hembra">Hembra</option>
+                </select>
+            </div>
+            <div>
+                <label>Carreras corridas</label>
+                <input type="number" name="" id="inputCarrerasCorridas">
+            </div>
+            <div>
+                <label>Carreras ganadas</label>
+                <input type="number" name="" id="inputCarrerasGanadas">
+            </div>
+            <div id="botonera">
+                <button class="boton-ingresar">Agregar producto</button>
+            </div>
+        </form>
+        <section id="contenedorProductos"></section>
+    </main>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="index2.js"></script>
+</body>
+</html>
