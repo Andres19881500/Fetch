@@ -58,6 +58,7 @@ class Producto {
     password = inputPassword.value;
     formularioUsuario.reset();
     consultarProductosJson();
+    mostrarTextoUsuario();
     //actualizarUsuarioStorage();
   }
 
@@ -218,9 +219,9 @@ class Producto {
 
     function mostrarTextoUsuario() {
       if (usuario == "jose" && password == "haras1") {
+        contenedorIdentificacion.hidden = true;
         contenedorUsuario.hidden = false;
         formularioProductos.hidden = false;
-        contenedorIdentificacion.hidden = true;
         textoUsuario.innerHTML += ` ${usuario}`;
       }
     }
