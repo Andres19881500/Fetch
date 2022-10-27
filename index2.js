@@ -1,5 +1,17 @@
 let productos = [];
+let usuario;
+let password;
 
+
+//Variables para ingreso con usuario
+let formularioUsuario;
+let contenedorIdentificacion;
+let contenedorUsuario;
+let formularioProductos;
+let inputUsuario;
+let inputPassword;
+
+//Variables para form de producto
 let formulario;
 let inputNombre;
 let inputGenero;
@@ -17,6 +29,16 @@ class Producto {
   }
   
   function inicializarElementos() {
+    //usuario
+    formularioUsuario = document.getElementById("formularioUsuario");
+    inputUsuario = document.getElementById("inputUsuario");
+    inputPassword = document.getElementById("inputPassword");
+    contenedorIdentificacion = document.getElementById("contenedorIdentificacion");
+    contenedorUsuario = document.getElementById("contenedorUsuario");
+    textoUsuario = document.getElementById("textoUsuario");
+    formularioProductos = document.getElementById("formularioProductos");
+        
+    //productos
     formulario = document.getElementById("formulario");
     inputNombre = document.getElementById("inputNombreProducto");
     inputGenero = document.getElementById("inputGenero");
@@ -26,14 +48,32 @@ class Producto {
   }
 
   function inicializarEventos() {
+    formularioUsuario.onsubmit = (event) => identificarUsuario(event);
     formulario.onsubmit = (event) => validarFormulario(event);
   }
 
-//Sweet Alert, sale en lugar del alert previo
+  function identificarUsuario(event) {
+    event.preventDefault();
+    usuario = inputUsuario.value;
+    password = inputPassword.value;
+    formularioUsuario.reset();
+    consultarProductosJson();
+    //actualizarUsuarioStorage();
+  }
+
+//Sweet Alert
   function mostrarSwal() {
     Swal.fire(
       'Error',
       'El numero de carreras ganadas no puede ser mayor al numero de carreras corridas',
+      'error'
+    )
+  }
+
+  function mostrarSwalPW() {
+    Swal.fire(
+      'Error',
+      'Usuario o contraseña incorrecto',
       'error'
     )
   }
@@ -58,31 +98,36 @@ class Producto {
 
   function validarFormulario(event) {
     event.preventDefault();
- 
-    let nombre = inputNombre.value;
-    let genero = inputGenero.value;
-    let carrerasCorridas = parseFloat(inputCarrerasCorridas.value);
-    let carrerasGanadas = parseInt(inputCarrerasGanadas.value);
+    if (usuario == "jose" && password == "haras1") {
+      let nombre = inputNombre.value;
+      let genero = inputGenero.value;
+      let carrerasCorridas = parseFloat(inputCarrerasCorridas.value);
+      let carrerasGanadas = parseInt(inputCarrerasGanadas.value);
 
-    let producto = new Producto(
-      nombre,
-      genero,
-      carrerasCorridas,
-      carrerasGanadas
-      );
-      
-      
-     
-    const ratioGanadas = carrerasGanadas > carrerasCorridas ? true : false;
-
-    ratioGanadas ? mostrarSwal() : add()
-      function add() {
-        productos.push(producto)
-        formulario.reset()
-        actualizarProductosStorage()
-        pintarProductos()
-        mostrarToastify()
-      }
+      const nombreExiste = productos.some((producto) => producto.nombre === nombre);
+      if (!nombreExiste) {
+        let producto = new Producto(
+          nombre,
+          genero,
+          carrerasCorridas,
+          carrerasGanadas
+        );
+        
+      const ratioGanadas = carrerasGanadas > carrerasCorridas ? true : false;
+  
+      ratioGanadas ? mostrarSwal() : add()
+        function add() {
+          productos.push(producto)
+          formulario.reset()
+          actualizarProductosStorage()
+          pintarProductos()
+          mostrarToastify()
+        } } else {
+          mostrarSwalPW();
+        }
+    } else {
+      mostrarSwalPW();
+    }
   }
 
     function eliminarProducto(nombre) {
@@ -131,6 +176,16 @@ class Producto {
       let productosJSON = JSON.stringify(productos);
       localStorage.setItem("productos", productosJSON);
     }
+
+    /*function usarioStorage() {
+      let usuarioJSON = JSON.stringify(usuario);
+      localStorage.setItem("usuario", usuarioJSON);
+    }*/
+
+    /*function passwordStorage() {
+      let passwordJSON = JSON.stringify(password);
+      localStorage.setItem("password", passwordJSON);
+    }*/
     
     function obtenerProductosStorage() {
       let productosJSON = localStorage.getItem("productos");
@@ -140,22 +195,44 @@ class Producto {
       }
     }
 
+    /*function obtenerUsuarioStorage() {
+      let usuarioJSON = localStorage.getItem("usuario");
+      if(usuarioJSON) {
+        usuario = JSON.parse(usuarioJSON);
+      }
+    }*/
+
     function consultarProductosJson() {
-      fetch("./productos.Json")
-      .then((Response) => Response.json())
-      .then((data) => { 
-        productos = [...data]
-        pintarProductos();
-      })
-      .catch((error) => console.log(error));
+      if(usuario == "jose" && password == "haras1") {
+        fetch("./productos.Json")
+        .then((Response) => Response.json())
+        .then((data) => { 
+          productos = [...data]
+          pintarProductos();
+        })
+        .catch((error) => console.log(error));
+      } else {
+        mostrarSwalPW();
+      }
+    }
+
+    function mostrarTextoUsuario() {
+      if (usuario == "jose" && password == "haras1") {
+        contenedorUsuario.hidden = false;
+        formularioProductos.hidden = false;
+        contenedorIdentificacion.hidden = true;
+        textoUsuario.innerHTML += ` ${usuario}`;
+      }
     }
     
     function main() {
       inicializarElementos();
       inicializarEventos();
-      consultarProductosJson();
+      //consultarProductosJson();
       //obtenerProductosStorage();
     }
-    
+
     main();
     console.log(productos);
+    console.log(usuario);
+    console.log(password);

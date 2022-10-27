@@ -14,30 +14,52 @@
     </header>
     <main>
         <h2>Listado y caracteristicas de caballos.</h2>
-        <form id="formulario" class="contacto__formulario">
+        <div id="contenedorUsuario" hidden>
             <div>
-                <label>Nombre</label>
-                <input type="text" name="" id="inputNombreProducto">
+                <h4 id="textoUsuario">Bienvenido</h4>
+                <p>Cerrar Sesión</p>
             </div>
-            <div>
-                <label>Genero (M/H)</label>
-                <select name="genero" id="inputGenero">
-                    <option value="Macho">Macho</option>
-                    <option value="Hembra">Hembra</option>
-                </select>
-            </div>
-            <div>
-                <label>Carreras corridas</label>
-                <input type="number" name="" id="inputCarrerasCorridas">
-            </div>
-            <div>
-                <label>Carreras ganadas</label>
-                <input type="number" name="" id="inputCarrerasGanadas">
-            </div>
-            <div id="botonera">
-                <button class="boton-ingresar">Agregar producto</button>
-            </div>
-        </form>
+        </div>
+        <div id="contenedorIdentificacion">
+            <form id="formularioUsuario" class="formulario__usuario">
+                <div>
+                    <label>Usuario</label>
+                    <input type="text" name="" id="inputUsuario">
+                </div>
+                <div>
+                    <label>Contraseña</label>
+                    <input type="password" name="" id="inputPassword">
+                </div>
+                <div id="botoneraUsuario">
+                    <button class="boton-usuario">Ingresar</button>
+            </form>
+        </div>
+        <div id="formularioProductos" hidden>
+            <form id="formulario" class="contacto__formulario">
+                <div>
+                    <label>Nombre</label>
+                    <input type="text" name="" id="inputNombreProducto">
+                </div>
+                <div>
+                    <label>Genero (M/H)</label>
+                    <select name="genero" id="inputGenero">
+                        <option value="Macho">Macho</option>
+                        <option value="Hembra">Hembra</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Carreras corridas</label>
+                    <input type="number" name="" id="inputCarrerasCorridas">
+                </div>
+                <div>
+                    <label>Carreras ganadas</label>
+                    <input type="number" name="" id="inputCarrerasGanadas">
+                </div>
+                <div id="botonera">
+                    <button class="boton-ingresar">Agregar producto</button>
+                </div>
+            </form>
+        </div>
         <section id="contenedorProductos"></section>
     </main>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
