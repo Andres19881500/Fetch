@@ -57,9 +57,10 @@ class Producto {
     usuario = inputUsuario.value;
     password = inputPassword.value;
     formularioUsuario.reset();
+    actualizarUsuarioStorage();
+    actualizarPasswordStorage();
     consultarProductosJson();
     mostrarTextoUsuario();
-    //actualizarUsuarioStorage();
   }
 
 //Sweet Alert
@@ -75,6 +76,14 @@ class Producto {
     Swal.fire(
       'Error',
       'Usuario o contraseña incorrecto',
+      'error'
+    )
+  }
+
+  function mostrarSwalProductoRepetido() {
+    Swal.fire(
+      'Error',
+      'El producto ya existe',
       'error'
     )
   }
@@ -105,7 +114,7 @@ class Producto {
       let carrerasCorridas = parseFloat(inputCarrerasCorridas.value);
       let carrerasGanadas = parseInt(inputCarrerasGanadas.value);
 
-      const nombreExiste = productos.some((producto) => producto.nombre === nombre);
+      const nombreExiste = productos.some((producto) => producto.nombre === nombre.toUpperCase());
       if (!nombreExiste) {
         let producto = new Producto(
           nombre,
@@ -123,8 +132,9 @@ class Producto {
           actualizarProductosStorage()
           pintarProductos()
           mostrarToastify()
-        } } else {
-          mostrarSwalPW();
+        } 
+      } else {
+          mostrarSwalProductoRepetido();
         }
     } else {
       mostrarSwalPW();
@@ -178,16 +188,14 @@ class Producto {
       localStorage.setItem("productos", productosJSON);
     }
 
-    /*function usarioStorage() {
-      let usuarioJSON = JSON.stringify(usuario);
-      localStorage.setItem("usuario", usuarioJSON);
-    }*/
+    function actualizarUsuarioStorage() {
+      localStorage.setItem("usuario", usuario);
+    }
 
-    /*function passwordStorage() {
-      let passwordJSON = JSON.stringify(password);
-      localStorage.setItem("password", passwordJSON);
-    }*/
-    
+    function actualizarPasswordStorage() {
+      localStorage.setItem("password", password);
+    }
+
     function obtenerProductosStorage() {
       let productosJSON = localStorage.getItem("productos");
       if (productosJSON) {
@@ -196,12 +204,21 @@ class Producto {
       }
     }
 
-    /*function obtenerUsuarioStorage() {
-      let usuarioJSON = localStorage.getItem("usuario");
-      if(usuarioJSON) {
-        usuario = JSON.parse(usuarioJSON);
+    function obtenerUsuarioStorage() {
+      let usuarioAlmacenado = localStorage.getItem("usuario");
+      if (usuarioAlmacenado) {
+        usuario = usuarioAlmacenado;
+        //mostrarTextoUsuario();
       }
-    }*/
+    }
+
+    function obtenerPasswordStorage() {
+      let passwordAlmacenado = localStorage.getItem("password");
+      if (passwordAlmacenado) {
+        password = passwordAlmacenado;
+        //mostrarTextoUsuario();
+      }
+    }
 
     function consultarProductosJson() {
       if(usuario == "jose" && password == "haras1") {
@@ -227,10 +244,11 @@ class Producto {
     }
     
     function main() {
+      obtenerUsuarioStorage();
+      obtenerPasswordStorage();
       inicializarElementos();
       inicializarEventos();
       //consultarProductosJson();
-      //obtenerProductosStorage();
     }
 
     main();
