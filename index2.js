@@ -208,7 +208,6 @@ class Producto {
       let usuarioAlmacenado = localStorage.getItem("usuario");
       if (usuarioAlmacenado) {
         usuario = usuarioAlmacenado;
-        //mostrarTextoUsuario();
       }
     }
 
@@ -216,7 +215,6 @@ class Producto {
       let passwordAlmacenado = localStorage.getItem("password");
       if (passwordAlmacenado) {
         password = passwordAlmacenado;
-        //mostrarTextoUsuario();
       }
     }
 
@@ -234,6 +232,12 @@ class Producto {
       }
     }
 
+    function validarUsuarioPassword() {
+      if (usuario == "jose" && password == "haras1") {
+        mostrarTextoUsuario();
+        consultarProductosJson();
+      }
+    }
     function mostrarTextoUsuario() {
       if (usuario == "jose" && password == "haras1") {
         contenedorIdentificacion.hidden = true;
@@ -248,7 +252,8 @@ class Producto {
       obtenerPasswordStorage();
       inicializarElementos();
       inicializarEventos();
-      //consultarProductosJson();
+      mostrarTextoUsuario();
+      consultarProductosJson();
     }
 
     main();
