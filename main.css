@@ -80,6 +80,26 @@ html {
   }
 }
 
+.ContenedorBienvenida {
+  display: flex;
+  align-items: center;
+  background-color: black;
+  color: white;
+  height: auto;
+  padding: 15px 15px 15px 30px;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.textIngresoCaballos {
+  background-color: #697987;
+  color: white;
+  height: auto;
+  padding: 15px 15px 15px 30px;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
 .caja__yeguas {
   width: 100vw;
   height: auto;
@@ -143,16 +163,16 @@ html {
   justify-content: space-between;
   align-items: center;
   width: 90vw;
-  max-width: 450px;
+  max-width: 500px;
   height: 40px;
   padding-top: 45px;
 }
 .contacto__formulario div label {
-  font-size: 1.4rem;
+  font-size: 2.0rem;
   color: white;
 }
 .contacto__formulario div legend {
-  font-size: 1.4rem;
+  font-size: 2.0rem;
   font-weight: 600;
   color: white;
   margin-top: 10px;
@@ -160,6 +180,8 @@ html {
 .contacto__formulario div input {
   width: 300px;
   height: 35px;
+  font-size: 2.0rem;
+  font-weight: 600;
   padding-left: 5px;
 }
 .contacto__formulario div select {
@@ -170,7 +192,7 @@ html {
 
 #botonera {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   height: 150px;
 }
 
@@ -188,27 +210,31 @@ html {
 
 .boton-ingresar {
   background-color: #009EF7;
+  color: white;
   border-radius: 0;
-  font-size: 1.4rem;
+  border-style: none;
+  font-size: 2.0rem;
   width: 200px;
   height: 40px;
 }
 .boton-ingresar:hover {
-  background-color: white;
-  color: black;
+  background-color: #0070c4;
+  color: white;
 }
 
 .boton-borrar {
   background-color: red;
+  color: white;
   border-radius: 0;
-  font-size: 1.4rem;
+  border-style: none;
+  font-size: 2.0rem;
   width: 200px;
   height: 40px;
   margin-top: 15px;
 }
 .boton-borrar:hover {
-  background-color: rgb(169, 5, 5);
-  color: black;
+  background-color: #c20000;
+  color: white;
 }
 
 
@@ -221,6 +247,7 @@ html {
   align-items: center;
   background-color: black;
   height: 750px;
+  padding-top: 50px;
 }
 .formulario__usuario div {
   display: flex;
@@ -232,11 +259,11 @@ html {
   padding-top: 45px;
 }
 .formulario__usuario div label {
-  font-size: 1.4rem;
+  font-size: 2.0rem;
   color: white;
 }
 .formulario__usuario div legend {
-  font-size: 1.4rem;
+  font-size: 2.0rem;
   font-weight: 600;
   color: white;
   margin-top: 10px;
@@ -245,22 +272,41 @@ html {
   width: 300px;
   height: 35px;
   padding-left: 5px;
+  font-size: 2.0rem;
+  font-weight: 600;
 }
 
 #botoneraUsuario {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   height: 150px;
 }
 
 .boton-usuario {
   background-color: #009EF7;
+  color: white;
   border-radius: 0;
-  font-size: 1.4rem;
+  border-style: none;
+  font-size: 2.0rem;
   width: 200px;
   height: 40px;
 }
 .boton-usuario:hover {
+  background-color: #0070c4;
+  color: white;
+}
+
+.boton-cerrar-sesion {
+  background-color: #EDFBFF;
+  color: black;
+  border-radius: 0;
+  border-style: none;
+  font-size: 2.0rem;
+  width: 200px;
+  height: 40px;
+  margin-left: 30px;
+}
+.boton-cerrar-sesion:hover {
   background-color: white;
   color: black;
 }

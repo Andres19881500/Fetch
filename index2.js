@@ -258,16 +258,14 @@ class Producto {
         contenedorIdentificacion.hidden = true;
         contenedorUsuario.hidden = false;
         formularioProductos.hidden = false;
-        textoUsuario.innerHTML += ` ${usuario}`;
+        textoUsuario.innerHTML = `Bienvenido ${usuario}`;
       } 
     }
 
     function mostrarLoginUsuario() {
         contenedorIdentificacion.hidden = false;
         contenedorUsuario.hidden = true;
-        formularioProductos.hidden = true;
-        textoUsuario.innerHTML = ``;
-      
+        formularioProductos.hidden = true; 
     }
     
     function main() {
