@@ -178,7 +178,7 @@ class Producto {
                     <p>Nombre:
                         <b>${producto.nombre}</b>
                     </p>
-                    <p>Genero:
+                    <p>Género:
                         <b>${producto.genero}</b>
                     </p>
                     <p>Carreras corridas:
