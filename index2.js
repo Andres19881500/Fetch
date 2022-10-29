@@ -10,6 +10,8 @@ let contenedorUsuario;
 let formularioProductos;
 let inputUsuario;
 let inputPassword;
+let booleanUsuarioPassword
+let botonCerrarSesion = document.getElementById("boton-cerrar-sesion")
 
 //Variables para form de producto
 let formulario;
@@ -59,8 +61,19 @@ class Producto {
     formularioUsuario.reset();
     actualizarUsuarioStorage();
     actualizarPasswordStorage();
+    validarUsuarioPassword();
+    mostrarSwalPW();
     consultarProductosJson();
-    mostrarTextoUsuario();
+    mostrarSimuladorUsuario();
+  }
+
+  function cerrarSesion() {
+    localStorage.clear();
+    usuario = "";
+    password= "";
+    productos = [];
+    mostrarLoginUsuario();
+    pintarProductos();
   }
 
 //Sweet Alert
@@ -73,11 +86,13 @@ class Producto {
   }
 
   function mostrarSwalPW() {
-    Swal.fire(
-      'Error',
-      'Usuario o contraseña incorrecto',
-      'error'
-    )
+    if (booleanUsuarioPassword == false) {
+      Swal.fire(
+        'Error',
+        'Usuario o contraseña incorrecto',
+        'error'
+      )
+    }
   }
 
   function mostrarSwalProductoRepetido() {
@@ -227,34 +242,46 @@ class Producto {
           pintarProductos();
         })
         .catch((error) => console.log(error));
-      } else {
-        mostrarSwalPW();
       }
     }
 
     function validarUsuarioPassword() {
       if (usuario == "jose" && password == "haras1") {
-        mostrarTextoUsuario();
-        consultarProductosJson();
+        booleanUsuarioPassword = true;
+      } else {
+        booleanUsuarioPassword = false;
       }
     }
-    function mostrarTextoUsuario() {
+
+    function mostrarSimuladorUsuario() {
       if (usuario == "jose" && password == "haras1") {
         contenedorIdentificacion.hidden = true;
         contenedorUsuario.hidden = false;
         formularioProductos.hidden = false;
         textoUsuario.innerHTML += ` ${usuario}`;
-      }
+      } 
+    }
+
+    function mostrarLoginUsuario() {
+        contenedorIdentificacion.hidden = false;
+        contenedorUsuario.hidden = true;
+        formularioProductos.hidden = true;
+        textoUsuario.innerHTML = ``;
+      
     }
     
     function main() {
-      obtenerUsuarioStorage();
-      obtenerPasswordStorage();
       inicializarElementos();
       inicializarEventos();
-      mostrarTextoUsuario();
+      obtenerUsuarioStorage();
+      obtenerPasswordStorage();
+      mostrarSimuladorUsuario();
       consultarProductosJson();
     }
+
+    botonCerrarSesion.addEventListener("click", () => {
+      cerrarSesion();
+    })
 
     main();
     console.log(productos);
