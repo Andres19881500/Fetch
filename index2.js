@@ -80,7 +80,7 @@ class Producto {
   function mostrarSwal() {
     Swal.fire(
       'Error',
-      'El numero de carreras ganadas no puede ser mayor al numero de carreras corridas',
+      'El número de carreras ganadas no puede ser mayor al número de carreras corridas',
       'error'
     )
   }
